@@ -17,7 +17,6 @@ module.exports = {
 	},
 
 	unpublished: function(req, res) {
-		console.log('unpublished', req.param('author'));
 		Post.find()
 			.where({published: false, author: req.param('author')})
 			.exec(function(err, posts) {
@@ -38,7 +37,6 @@ module.exports = {
 		Post.find()
 			.where({type: 'lesson'})
 			.exec(function(err, lessons) {
-				console.log('lessons', lessons);
 				if (err) res.send(err, 500);
 				else res.json(lessons);
 			});

@@ -52,17 +52,14 @@ module.exports = {
   		maxLength: 140
   	},
   	standards: 'ARRAY',
-  	objectives: 'ARRAY',
 
   	content: 'STRING',
     
     render: function(cb) {
     	var metadata = this.toObject();
-    	console.log('metadata', metadata);
 			metadata.content = metadata.content && marked(metadata.content);
 
 			var layout = type2Layout(metadata.type);
-			console.log('layout', layout);
 			fs.readFile(path.join(__dirname, '../../lib', layout + '.html'), function(err, data) {
 				if (err) return cb(err);
 				cb(null, Mustache.render(data.toString(), {data: metadata}));
