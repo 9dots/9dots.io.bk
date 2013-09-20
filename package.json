@@ -11,7 +11,8 @@
     "optimist": "0.3.4",
     "marked": "~0.2.9",
     "mustache": "~0.7.2",
-    "knox": "~0.8.6"
+    "knox": "~0.8.6",
+    "sails-mongo": "~0.9.5"
   },
   "scripts": {
     "start": "node app.js",
