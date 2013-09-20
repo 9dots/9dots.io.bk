@@ -8,6 +8,8 @@
 
 module.exports = {
 
+	adapter: 'mongo',
+
   attributes: {
   	id: 'string',
   	gravatar: 'string'

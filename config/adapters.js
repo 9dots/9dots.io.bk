@@ -12,6 +12,8 @@
  * http://sailsjs.org/#documentation
  */
 
+console.log('MONGO_URL', process.env.MONGOHQ_URL)
+
 module.exports.adapters = {
 
   // If you leave the adapter config unspecified 
@@ -30,8 +32,8 @@ module.exports.adapters = {
   },
 
   mongo: {
-    module   : 'sails-mongo',
-    url      : process.env.MONGOHQ_URL
+    module: 'sails-mongo',
+    url: process.env.MONGOHQ_URL
   },
 
   // MySQL is the world's most popular relational database.
