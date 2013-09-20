@@ -12,8 +12,6 @@
  * http://sailsjs.org/#documentation
  */
 
-console.log('MONGO_URL', process.env.MONGOHQ_URL)
-
 module.exports.adapters = {
 
   // If you leave the adapter config unspecified 

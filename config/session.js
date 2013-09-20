@@ -42,11 +42,8 @@ module.exports.session = {
   db: 'sails',
   collection: 'sessions'
   
-  /*Optional Values:
-  
-  # Note: url will override other connection settings
-  url: 'mongodb://user:pass@host:port/database/collection',
-  
+  url: process.env.MONGOHQ_URL,
+  /*
   username: '',
   password: '',
   auto_reconnect: false,
