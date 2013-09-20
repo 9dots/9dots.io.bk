@@ -21,5 +21,9 @@
   "main": "app.js",
   "repository": "",
   "author": "",
-  "license": ""
+  "license": "",
+  "engines" : { 
+    "npm" : "~1.3.5" ,
+    "node": "~0.10.15"
+  } 
 }
