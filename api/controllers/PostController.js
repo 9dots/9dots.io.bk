@@ -4,7 +4,6 @@
  * @module		:: Controller
  * @description	:: Contains logic for handling requests.
  */
- console.log('test');
 
 module.exports = {
 
