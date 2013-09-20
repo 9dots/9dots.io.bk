@@ -40,7 +40,7 @@ module.exports.session = {
   host: 'localhost',
   port: 27017,
   db: 'sails',
-  collection: 'sessions'
+  collection: 'sessions',
   
   url: process.env.MONGOHQ_URL,
   /*
