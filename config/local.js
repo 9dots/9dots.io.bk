@@ -38,7 +38,7 @@ module.exports = {
   // In production, you'll probably want to change this setting 
   // to 80 (http://) or 443 (https://) if you have an SSL certificate
 
-  port: parseInt(process.env.PORT) || 5000,
+  port: parseInt(process.env.PORT) || 1337,
 
 
 

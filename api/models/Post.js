@@ -52,7 +52,7 @@ module.exports = {
   		maxLength: 140
   	},
   	standards: 'ARRAY',
-
+    objective: 'STRING',
   	content: 'STRING',
     
     render: function(cb) {
