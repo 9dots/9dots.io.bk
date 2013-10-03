@@ -22,8 +22,8 @@
   "repository": "",
   "author": "",
   "license": "",
-  "engines" : { 
-    "npm" : "~1.3.5" ,
+  "engines": {
+    "npm": "~1.3.5",
     "node": "~0.10.15"
-  } 
+  }
 }
