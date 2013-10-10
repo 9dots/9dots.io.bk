@@ -57,7 +57,6 @@ module.exports = {
 	  var repo = req.body.repository;
 
 	  _.each(req.body.commits, function(commit) {
-
 	    _.each(commit.added.concat(commit.modified), function(file) {
 	    	var id = repo.owner.name + '-' + file.split('.')[0];
 	    	Post.findOne({id: id}).done(function(err, post) {
@@ -72,7 +71,8 @@ module.exports = {
 	    });
 
 	    _.each(commit.removed, function(file) {
-	    	Post.destroy({id: repo.owner.name + '-' + file});
+	    	var id = repo.owner.name + '-' + file.split('.')[0];
+	    	Post.delete(id);
 	    });
 	  });
 	 

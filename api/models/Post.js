@@ -140,6 +140,14 @@ module.exports = {
   		if (err) throw err;
   		next();
   	});
+  },
+
+  delete: function(id) {
+    clearTimeout(timeouts[id]);
+    Post.destroy({id: id}).done(function(err) {
+      if (err)
+        console.log('Error destroying ' + id + ': ' + err);
+    });
   }
 
 };
