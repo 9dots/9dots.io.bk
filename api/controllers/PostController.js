@@ -49,6 +49,33 @@ module.exports = {
 				if (err) res.send(err, 500);
 				else res.json(lessons);
 			});
+	},
+
+	webhook: function(req, res) {
+	  var filesChanged = {};
+	  var filesRemoved = {};
+	  var repo = req.body.repository;
+
+	  _.each(req.body.commits, function(commit) {
+
+	    _.each(commit.added.concat(commit.modified), function(file) {
+	    	var id = repo.owner.name + '-' + file.split('.')[0];
+	    	Post.findOne({id: id}).done(function(err, post) {
+	    		if (err) {
+	    			Post.create({id: id}).don(function(err, post) {
+	    				post.updateFromGithub(repo.owner.name, repo.name);
+	    			})
+	    		} else {
+	    			post.updateFromGithub(repo.owner.name, repo.name);
+	    		}
+	    	});
+	    });
+
+	    _.each(commit.removed, function(file) {
+	    	Post.destroy({id: repo.owner.name + '-' + file});
+	    });
+	  });
+	 
 	}
   
   

@@ -12,12 +12,16 @@ var path = require('path');
 var Mustache = require('mustache');
 var type2Layout = require('../../lib/type2Layout');
 var knox = require('knox');
+var https = require('https');
+var jsyaml = require('js-yaml');
 
 var client = knox.createClient({
     key: 'AKIAJBZSOLCLYZHNTUYA'
   , secret: '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'
   , bucket: 'posts.9dots.io'
 });
+
+var timeouts = {};
 
 marked.setOptions({breaks: true});
 
@@ -75,7 +79,50 @@ module.exports = {
 			      cb(err);
 			  });
 		  });
-  	}
+  	},
+
+    updateFromGithub: function(owner, repo) {
+      var self = this;
+      if (timeouts[this.id])
+        clearTimeout(timeouts[this.id]);
+      // give github time to update
+      timeouts[this.id] = setTimeout(function() {
+        self._pullGithubData(owner, repo);
+        clearTimeout(timeouts[self.id]);
+      }, 60000);
+    },
+
+    _pullGithubData: function(owner, repo) {
+      var self = this;
+      var file = this.id.split('-')[1];
+      var p = '/' + owner + '/' + repo + '/master/' + file + '.md';
+      var req = https.get("https://raw.github.com" + p, function(res) {
+        var buffer = [];
+        res.on('data', function(chunk) {
+          buffer.push(chunk);
+        });
+        res.on('end', function() {
+          var metadata = {};
+          var content = Buffer.concat(buffer).toString().replace(/^(---\n)((.|\n)*?)\n---\n?/, function (match, dashes, frontmatter) {
+            try {
+              metadata = jsyaml.load(frontmatter);
+            } catch(e) {
+              console.log('ERROR encoding YAML');
+            }
+            return '';
+          }).trim();
+          metadata.content = content;
+          Post.update({id: self.id}, metadata, function(err) {
+            if (err)
+              console.log('ERROR saving metadata');
+          });
+        });
+      });
+
+      req.on('error', function(e) {
+        console.log('problem with request: ' + e.message);
+      });
+    }
 
   },
 
