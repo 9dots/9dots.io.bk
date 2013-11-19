@@ -13,7 +13,8 @@
     "mustache": "~0.7.2",
     "knox": "~0.8.6",
     "sails-mongo": "~0.9.5",
-    "js-yaml": "~2.1.2"
+    "js-yaml": "~2.1.2",
+    "newrelic": "~1.1.1"
   },
   "scripts": {
     "start": "node app.js",
