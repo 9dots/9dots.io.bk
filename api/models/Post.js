@@ -47,7 +47,7 @@ module.exports = {
   	title: {
   		type: 'STRING',
   		minLength: 3,
-  		maxLength: 50
+  		maxLength: 60
   	},
   	
   	blurb: {
