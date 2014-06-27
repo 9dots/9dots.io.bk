@@ -14,6 +14,7 @@ var type2Layout = require('../../lib/type2Layout');
 var knox = require('knox');
 var https = require('https');
 var jsyaml = require('js-yaml');
+var debug = require('debug')('9dots.io');
 
 var client = knox.createClient({
     key: 'AKIAJBZSOLCLYZHNTUYA'
@@ -112,6 +113,7 @@ module.exports = {
             return '';
           }).trim();
           metadata.content = content;
+          debug('received github update for: ' + p);
           Post.update({id: self.id}, metadata, function(err) {
             if (err)
               console.log('ERROR saving metadata');
