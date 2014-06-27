@@ -82,6 +82,7 @@ module.exports = {
   	},
 
     updateFromGithub: function(owner, repo) {
+      console.log('updateFromGithub', owner, repo);
       var self = this;
       if (timeouts[this.id])
         clearTimeout(timeouts[this.id]);
@@ -104,6 +105,7 @@ module.exports = {
         res.on('end', function() {
           var metadata = {};
           var err = null;
+          console.log('buffer', Buffer.concat(buffer).toString())
           var content = Buffer.concat(buffer).toString().replace(/^(---\n)((.|\n)*?)\n---\n?/, function (match, dashes, frontmatter) {
             try {
               metadata = jsyaml.load(frontmatter);
