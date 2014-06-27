@@ -97,9 +97,10 @@ module.exports = {
       var self = this;
       var file = this.id.split('-')[1];
       var p = '/' + owner + '/' + repo + '/master/' + file + '.md';
-      var req = https.get("https://raw.github.com" + p, function(res) {
+      var req = https.get("https://raw.githubusercontent.com" + p, function(res) {
         var buffer = [];
         res.on('data', function(chunk) {
+          console.log('res', chunk.toString());
           buffer.push(chunk);
         });
         res.on('end', function() {
