@@ -55,7 +55,6 @@ module.exports = {
 	  var filesChanged = {};
 	  var filesRemoved = {};
 	  var repo = req.body.repository;
-	  console.log('webook', req.body.commits);
 	  _.each(req.body.commits, function(commit) {
 	    _.each(commit.added.concat(commit.modified), function(file) {
 	    	var id = repo.owner.name + '-' + file.split('.')[0];
