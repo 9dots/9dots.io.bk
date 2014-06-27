@@ -103,14 +103,17 @@ module.exports = {
         });
         res.on('end', function() {
           var metadata = {};
+          var err = null;
           var content = Buffer.concat(buffer).toString().replace(/^(---\n)((.|\n)*?)\n---\n?/, function (match, dashes, frontmatter) {
             try {
               metadata = jsyaml.load(frontmatter);
             } catch(e) {
               console.log('ERROR encoding YAML');
+              err = e;
             }
             return '';
           }).trim();
+          console.log('pull github data', owner, repo, content);
           metadata.content = content;
           Post.update({id: self.id}, metadata, function(err) {
             if (err)

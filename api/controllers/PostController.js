@@ -61,7 +61,7 @@ module.exports = {
 	    	var id = repo.owner.name + '-' + file.split('.')[0];
 	    	Post.findOne({id: id}).done(function(err, post) {
 	    		if (err) {
-	    			Post.create({id: id}).don(function(err, post) {
+	    			Post.create({id: id}).done(function(err, post) {
 	    				post.updateFromGithub(repo.owner.name, repo.name);
 	    			})
 	    		} else {
