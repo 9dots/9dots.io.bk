@@ -1,34 +1,41 @@
 {{=<% %>=}}
-<img id='post-blurred-image' class='stretch' ng-src='{{"<%data.image%>" | blur}}'/>
+<img class='stretch'/>
 <%={{ }}=%>
-<div class='page-content-wrap clearfix'>
-	<div editor-menu default-edit-mode='preview'></div>
-	<div class='page-inner'>
-		<div class='page-info'>
-			<h1 class='title'>{{data.title}}</h1>
-			<p>{{data.blurb}}</p>
+<div class='large-image-wrap'>
+	<div style='background-image: url({{data.fullImage}})' class='page-image'>
+		<div class='header-image-darken'>
+			<div class='page-info-wrapper'>
+				<div class='page-info'>
+					<h1 class='title'>{{data.title}}</h1>		
+					<h5>{{data.blurb}}</h5>
+				</div>
+			</div>
 		</div>
+	</div>
+	<span class='jump-to-lesson' ng-click='scroll()'></span>
+</div>
+<div class='page-content-wrap clearfix {{data.type}}'>
+	<div editor-menu default-edit-mode='preview'></div>
+	<div class='page-inner page-full'>
 		<article>
 			<div class="lessons">
 				{{#data.lessons}}
 					{{=<% %>=}}
 					<div class='page-overview'>
 						<a ng-href='{{"/<%.%>" | idToUrl}}'>
-							<div class='page-image-wrap'  style='background-image: url({{$pages["<%.%>"].image}})'>
+							<div class='page-header'>
 								<div class='page-title'>{{$pages["<%.%>"].title}}</div>
+								<div class='page-blurb'>{{$pages["<%.%>"].blurb}}</div>
+							</div>
+							<div class='page-image-wrap' style='background-image: url(http://uploads.9dots.io/OjN7Jaf_md.jpg)'>
+								<div class='page-image' style='background-image: url({{$pages["<%.%>"].image}})'></div>
 							</div>
 						</a>
-						<div class='page-heel'>
-							<div class='page-blurb'>{{$pages["<%.%>"].blurb}}</div>
-						</div>
 					</div>
 					<%={{ }}=%>
 				{{/data.lessons}}
 			</div>
 		</article>
-	</div>
-	<div class='page-sidebar'>
-		<div style='background-image: url({{data.image}})' class='page-image'></div>
 	</div>
 </div>
 

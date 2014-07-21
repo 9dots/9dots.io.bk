@@ -1,29 +1,34 @@
 {{=<% %>=}}
-<img id='post-blurred-image' class='stretch' ng-src='{{"<%data.image%>" | blur}}'/>
+<img class='stretch'/>
 <%={{ }}=%>
+<div class='large-image-wrap'>
+	<div style='background-image: url({{data.fullImage}})' class='page-image'>
+		<div class='header-image-darken'>
+			<div class='page-info-wrapper'>
+				<div class='page-info'>
+					<h1 class='title'>{{data.title}}</h1>		
+					<h5>{{data.blurb}}</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	<span class='jump-to-lesson' ng-click='scroll()'></span>
+</div>
 <div class='page-content-wrap clearfix'>
 	<div editor-menu default-edit-mode='preview'></div>
-	<div class='page-inner'>
-		<div class='page-info'>
-			<h1 class='title'>{{data.title}}</h1>		
-			<p>{{data.blurb}}</p>
-			<p class='objective'>{{data.objective}}</p>
-		</div>
+	<div class='page-inner page-full'>
 		<article>
+			<p class='objective'>{{data.objective}}</p>
 			{{{data.content}}}
+				{{#data.attachments.length}}
+					<h2>Attachments</h2>
+				{{/data.attachments.length}}
+			<ul>
+			{{#data.attachments}}
+				<li> <a ng-href='{{path}}' download='{{name}}' target="_self">{{name}}</a>
+	       </li>
+			{{/data.attachments}}
+			</ul>
 		</article>
 	</div>
-	<div class='page-sidebar'>
-		<div style='background-image: url({{data.image}})' class='page-image'></div>
-		<ul class='attachments'>
-			{{#data.attachments.length}}
-				<li class='attachment-header'>Attachments</li>
-			{{/data.attachments.length}}
-		{{#data.attachments}}
-			<li> <a ng-href='{{path}}' download='{{name}}' target="_self">{{name}}</a>
-       </li>
-		{{/data.attachments}}
-		</ul>
-	</div>
 </div>
-
