@@ -21,10 +21,10 @@
 		<article>
 			<p class='objective'>{{data.objective}}</p>
 			{{{data.content}}}
+			<ul>
 				{{#data.attachments.length}}
 					<h2>Attachments</h2>
 				{{/data.attachments.length}}
-			<ul>
 			{{#data.attachments}}
 				<li> <a ng-href='{{path}}' download='{{name}}' target="_self">{{name}}</a>
 	       </li>

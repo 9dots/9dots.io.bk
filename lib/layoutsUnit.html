@@ -1,42 +1,15 @@
 {{=<% %>=}}
-<img class='stretch'/>
 <img class='stretch color'/>
 <%={{ }}=%>
-<div class='large-image-wrap'>
-	<div style='background-image: url({{data.fullImage}})' class='page-image'>
-		<div class='header-image-darken'>
-			<div class='page-info-wrapper'>
-				<div class='page-info'>
-					<h1 class='title'>{{data.title}}</h1>		
-					<h5>{{data.blurb}}</h5>
-				</div>
-			</div>
-		</div>
-	</div>
-	<span class='jump-to-lesson' ng-click='scroll()'></span>
-</div>
 <div class='page-content-wrap clearfix {{data.type}}'>
 	<div editor-menu default-edit-mode='preview'></div>
-	<div class='page-inner page-full'>
+	<div class='page-inner'>
+		<div class='page-info'>
+			<h1 class='title'>{{data.title}}</h1>
+			<p>{{data.blurb}}</p>
+		</div>
 		<article>
-			<div class="lessons">
-				{{#data.lessons}}
-					{{=<% %>=}}
-					<div class='page-overview'>
-						<a ng-href='{{"/<%.%>" | idToUrl}}'>
-							<div class='page-header'>
-								<div class='page-title'>{{$pages["<%.%>"].title}}</div>
-								<div class='page-blurb'>{{$pages["<%.%>"].blurb}}</div>
-							</div>
-							<div class='page-image-wrap' style='background-image: url(http://uploads.9dots.io/OjN7Jaf_md.jpg)'>
-								<div class='page-image' style='background-image: url({{$pages["<%.%>"].image}})'></div>
-							</div>
-						</a>
-					</div>
-					<%={{ }}=%>
-				{{/data.lessons}}
-			</div>
+			{{{data.content}}}
 		</article>
 	</div>
 </div>
-
