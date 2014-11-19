@@ -53,16 +53,19 @@ module.exports = {
   	
   	blurb: {
   		type: 'STRING',
-  		minLength: 3,
-  		maxLength: 140
+  		minLength: 3
   	},
   	standards: 'ARRAY',
-    objective: 'STRING',
+    objective: 'ARRAY',
   	content: 'STRING',
     
     render: function(cb) {
     	var metadata = this.toObject();
-			metadata.content = metadata.content && marked(metadata.content);
+
+      if(metadata.type == 'lesson')
+        metadata.objective = metadata.objective.map(function(obj) {return {name: obj}});
+      metadata.content = metadata.content && marked(metadata.content);
+      metadata.blurb = marked(metadata.blurb);
 
 			var layout = type2Layout(metadata.type);
 			fs.readFile(path.join(__dirname, '../../lib', layout + '.html'), function(err, data) {
