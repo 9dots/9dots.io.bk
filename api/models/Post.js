@@ -65,7 +65,8 @@ module.exports = {
       if(metadata.type == 'lesson')
         metadata.objective = metadata.objective.map(function(obj) {return {name: obj}});
       metadata.content = metadata.content && marked(metadata.content);
-      metadata.blurb = marked(metadata.blurb);
+      if(metadata.blurb)
+        metadata.blurb = marked(metadata.blurb);
 
 			var layout = type2Layout(metadata.type);
 			fs.readFile(path.join(__dirname, '../../lib', layout + '.html'), function(err, data) {
